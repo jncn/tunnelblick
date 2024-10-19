@@ -104,14 +104,14 @@ have appropriate versions of the GNU "auto tools" installed in
 
 Notes:
 
- 1. automake version 2.0 and higher cannot be used.
+ 1. Automake version 2.0 and higher cannot be used.
 
- 2. If built with automake version 1.14 or higher, warnings and errors
+ 2. If built with Automake version 1.14 or higher, warnings and errors
  concerning "subdir-objects" may be ignored.
 
   ### Method 1. Homebrew Install
 
-  Required packages are available from homebrew. If you have homebrew
+  Required packages are available from Homebrew. If you have Homebrew
   installed, open a Terminal window and execute 
   `brew install autoconf automake libtool`.
 
@@ -127,7 +127,7 @@ Notes:
   "administrator" user, not as a "standard" user.)
 
   If you installed the autotools using an older version of the above
-  script, you should update automake to version 1.16.3 using the script at
+  script, you should update Automake to version 1.16.3 using the script at
   `TBS/third_party/ShellScriptToInstallAutomake1.16.3.sh`
 
 ## 4. Setting up Xcode to Build Tunnelblick
