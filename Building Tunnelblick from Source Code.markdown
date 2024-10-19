@@ -1,4 +1,5 @@
-**Building Tunnelblick from Source Code**
+
+# Building Tunnelblick from Source Code
 
 _Last Updated 2024-06-16_
 
@@ -18,23 +19,6 @@ document describes how to do that.
 Tunnelblick runs on macOS 10.13 and higher when built with Xcode 15 as described
 in this document.
 
-When running on recent versions of macOS, Tunnelblick's tun and tap system extensions
-are restricted:
-
- * On macOS 10.15 ("Catalina"), the computer must be restarted after loading the
-   system extensions for the first time.
-
- * On macOS 10.16 ("Big Sur"), Tunnelblick's tun and tap system extensions can be
-   used only after being installed and approved by an administrator;
-   the installation process involves restarting the computer.
-
- * On Apple Silicon (M1) Macs, installing Tunnelblick's system extensions
-   requires a change to the default security settings, which requires two
-   additional computer restarts.
-
-See [The Future of Tun and Tap VPNs on macOS](https://tunnelblick.net/cTunTapConnections.html)
-For details.
-
 To build Tunnelblick from the source code:
 
  1. You need a supported version of macOS and Xcode;
@@ -50,8 +34,26 @@ Interspersed with these are sections on **Using a Virtual Machine**,
 **Beginning to Use Xcode to Build Tunnelblick**, and **Building OpenVPN
 and the Other Third-Party Software**.
 
+### Restrictions
 
-**Using a Virtual Machine**
+When running on recent versions of macOS, Tunnelblick's tun and tap system extensions
+are restricted:
+
+ * On macOS 10.15 ("Catalina"), the computer must be restarted after loading the
+   system extensions for the first time.
+
+ * On macOS 10.16 ("Big Sur"), Tunnelblick's tun and tap system extensions can be
+   used only after being installed and approved by an administrator;
+   the installation process involves restarting the computer.
+
+ * On Apple Silicon (M1) Macs, installing Tunnelblick's system extensions
+   requires a change to the default security settings, which requires two
+   additional computer restarts.
+
+See [The Future of Tun and Tap VPNs on macOS](https://tunnelblick.net/cTunTapConnections.html)
+for details.
+
+### Using a Virtual Machine
 
 Using a virtual machine to build Tunnelblick is fine – Tunnelblick
 releases are sometimes built using 
@@ -61,7 +63,7 @@ code is located on a network device or the host computer, so copying the source
 to the virtual machine's hard drive and building there is recommended.
 
 
-**1. Supported Versions of macOS and Xcode**
+## 1. Supported Versions of macOS and Xcode
 
 The current version of Tunnelblick should be built using:
  * Xcode 15.4  on macOS 14.5 on an Intel or Apple Silicon Mac; Rosetta is required
@@ -73,13 +75,13 @@ processors.
 Other versions of Xcode and macOS may fail to build Tunnelblick, or create
 Tunnelblick binaries that crash or have other unpredictable behavior.
 
-**2. Getting the Tunnelblick Source Code**
+## 2. Getting the Tunnelblick Source Code
 
 Tunnelblick source code is maintained using the git version control program. The
 three branches normally used are:
- * *master*: Contains the most recent code; beta releases are based on master.
- * *3*: Contains the most recent code for the latest 3.* release
- * *3.5*: Contains the most recent code for the 3.5.* release (very old!)
+ * `master`: Contains the most recent code; beta releases are based on master.
+ * `3`: Contains the most recent code for the latest 3.x release
+ * `3.5`: Contains the most recent code for the 3.5.x release (very old!)
 
 Download the Tunnelblick source code from the [Tunnelblick Project on
 GitHub](https://github.com/Tunnelblick//Tunnelblick).
@@ -94,7 +96,7 @@ The rest of this document refers to the folder in which you have
 downloaded Tunnelblick as "**TBS**".
 
 
-**3. Installing the GNU autotools**
+## 3. Installing the GNU autotools
 
 To build the third-party parts of Tunnelblick, the build computer must
 have appropriate versions of the GNU "auto tools" installed in
@@ -107,19 +109,17 @@ Notes:
  2. If built with automake version 1.14 or higher, warnings and errors
  concerning "subdir-objects" may be ignored.
 
-  **Method 1. Homebrew Install**
+  ### Method 1. Homebrew Install
 
   Required packages are available from homebrew. If you have homebrew
-  installed, open a Terminal window and execute
+  installed, open a Terminal window and execute 
+  `brew install autoconf automake libtool`.
 
-  brew install autoconf automake libtool
-
-  **Method 2. Shell Script Install**
+  ### Method 2. Shell Script Install
 
   A shell script is provided that will download and install them. To use
   it, open a Terminal window and execute
-
-  **TBS**/third_party/ShellScriptToInstallAutotools.sh
+  `TBS/third_party/ShellScriptToInstallAutotools.sh`
 
   The script downloads appropriate versions of the tools and installs
   them. Because it installs to a protected folder, you will be asked for
@@ -128,10 +128,9 @@ Notes:
 
   If you installed the autotools using an older version of the above
   script, you should update automake to version 1.16.3 using the script at
+  `TBS/third_party/ShellScriptToInstallAutomake1.16.3.sh`
 
-  **TBS**/third_party/ShellScriptToInstallAutomake1.16.3.sh
-
-**4. Setting up Xcode to Build Tunnelblick**
+## 4. Setting up Xcode to Build Tunnelblick
 
 Double-click **TBS**/tunnelblick/Tunnelblick.xcodeproj to
 open the Tunnelblick source code in Xcode.
@@ -143,16 +142,15 @@ click a button while Xcode is indexing it may crash. (This is an Xcode
 problem, not a Tunnelblick problem.)
 
 Xcode needs to have the command line tools installed. You can
-do that in Terminal with the following command:
-```xcode-select --install```
+do that in Terminal with the following command: `xcode-select --install`
 
 Xcode also needs to be built using "Manual Order", which is _not_ the default. To
-change the default, click Product >> Scheme >> Edit Scheme, then "Build" on the left,
+change the default, click Product > Scheme > Edit Scheme, then "Build" on the left,
 then set "Build Order" to "Manual Order". You should also un-check "Find Implicit
 Dependencies".
 
-Xcode also needs to be set to build in "legacy" locations; in Xcode >> Settings
->> Locations >> Advanced >> set "Build Location" to "Legacy".
+Xcode also needs to be set to build in "legacy" locations; in Xcode > Settings > 
+Locations > Advanced > set "Build Location" to "Legacy".
 
 **5. Selecting  the Type of Build You Want to Create**
 
@@ -169,18 +167,17 @@ To select the type of build in Xcode:
  4. Select build type "Release" in the drop-down list to the right of "Build
  Configuration" on the right.
 
-**6. Install Rosetta**
+## 6. Install Rosetta
 
 On an Apple Silicon Mac, Tunnelblick's build process requires Rosetta because
 it uses Apple's "files" command line program, which has a bug which requires
 Rosetta to work properly. Install Rosetta by typing the following into Terminal:
+`softwareupdate --install-rosetta`
 
-softwareupdate --install-rosetta
 
+## 7. Finally, Build Tunnelblick!
 
-**7. Finally, Build Tunnelblick!**
-
-Do a "Product >> Clean build folder" before building.
+Do a "Product > Clean build folder" before building.
 
 Finally! You are ready to build Tunnelblick. Click Product > Build.
 
@@ -211,8 +208,9 @@ Good luck!
 If you have problems, please post to the [Tunnelblick Discussion
 Group](https://groups.google.com/forum/#!forum/tunnelblick-discuss).
 
+---
 
-Building OpenVPN and the Other Third-Party Software
+# Building OpenVPN and the Other Third-Party Software
 
 The normal Tunnelblick build process only builds the third-party software (OpenVPN,
 OpenSSL, LZO, Sparkle, pkcs11-helper, and tuntap) **once**, using third_party/Makefile.
