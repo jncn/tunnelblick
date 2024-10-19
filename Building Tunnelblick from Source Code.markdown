@@ -104,9 +104,9 @@ have appropriate versions of the GNU "auto tools" installed in
 
 Notes:
 
- 1. Automake version 2.0 and higher cannot be used.
+ * Automake version 2.0 and higher cannot be used.
 
- 2. If built with Automake version 1.14 or higher, warnings and errors
+ * If built with Automake version 1.14 or higher, warnings and errors
  concerning "subdir-objects" may be ignored.
 
   ### Method 1. Homebrew Install
