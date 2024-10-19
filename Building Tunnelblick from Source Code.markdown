@@ -42,7 +42,7 @@ are restricted:
  * On macOS 10.15 ("Catalina"), the computer must be restarted after loading the
    system extensions for the first time.
 
- * On macOS 10.16 ("Big Sur"), Tunnelblick's tun and tap system extensions can be
+ * On macOS 11 ("Big Sur"), Tunnelblick's tun and tap system extensions can be
    used only after being installed and approved by an administrator;
    the installation process involves restarting the computer.
 
@@ -65,15 +65,15 @@ to the virtual machine's hard drive and building there is recommended.
 
 ## 1. Supported Versions of macOS and Xcode
 
-The current version of Tunnelblick should be built using:
- * Xcode 15.4  on macOS 14.5 on an Intel or Apple Silicon Mac; Rosetta is required
-on Apple Silicon Macs because of a bug in Apple's "files" command line utility.
+The current version of Tunnelblick should be built using Xcode 15.4 on macOS 14.5 on 
+an Intel or Apple Silicon Mac. Rosetta is required on Apple Silicon Macs because of a 
+bug in Apple's "files" command line utility.
 
 Tunnelblick will be a Universal binary and run natively on Intel or Apple Silicon
 processors.
 
 Other versions of Xcode and macOS may fail to build Tunnelblick, or create
-Tunnelblick binaries that crash or have other unpredictable behavior.
+Tunnelblick binaries that crash or have other unpredictable behaviour.
 
 ## 2. Getting the Tunnelblick Source Code
 
@@ -152,7 +152,7 @@ Dependencies".
 Xcode also needs to be set to build in "legacy" locations; in Xcode > Settings > 
 Locations > Advanced > set "Build Location" to "Legacy".
 
-**5. Selecting  the Type of Build You Want to Create**
+## 5. Selecting the Type of Build You Want to Create
 
 There are two different types of builds. Unfortunately Xcode defaults to
 using the one you shouldn't use, "Debug". You should use the "Release"
